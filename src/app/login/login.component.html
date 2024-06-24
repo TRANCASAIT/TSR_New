@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="login-box">
+    <img src="assets/logo.png" alt="Trancasa">
+    <h2>Bienvenido</h2>
+    <form [formGroup]="loginForm">
+      <div class="form-group">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="username" type="text" formControlName="UserName">
+          <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="password" [type]="hide ? 'password' : 'text'" formControlName="Password">
+          <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' :
+            'visibility'}}</mat-icon>
+        </mat-form-field>
+      </div>
+      <button type="submit" color="primary" mat-raised-button [disabled]="loginForm.invalid" (click)="log()">Login</button>
+    </form>
+    <div class="links">
+      <a routerLink="/reset-session">Reset Session</a>
+      <a routerLink="/recover-password">Forgot Password</a>
+    </div>
+    <mat-progress-spinner *ngIf="spinnerOk"
+        class="example-margin"
+        color="primary"
+        [mode]="mode"
+        value="50"
+        [diameter]="35">
+    </mat-progress-spinner>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="custom-dialog-content">
+  <div mat-dialog-content>
+      <p style="color: black;">¿Esta seguro de regresar el folio: <b>{{folio}} - {{customer}}</b> al estatus previo?</p>
+  </div>
+  <div mat-dialog-actions align="center">
+      <button mat-button (click)="onYesClick()" cdkFocusInitial class="actionBtn">SI</button>
+      <button mat-button (click)="closeModal()" class="closeBtn">NO</button>
+  </div>
+</div>

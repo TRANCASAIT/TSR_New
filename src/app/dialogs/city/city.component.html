@@ -1,0 +1,58 @@
+<div class="custom-dialog-content">
+  <h1 mat-dialog-title class="text-center">Ciudad</h1>
+  <div mat-dialog-content>
+      <form [formGroup]="cityForm">
+          <div class="text-center">
+              <input matInput formControlName="cityId" [errorStateMatcher]="matcher" hidden>
+              <div class="row">
+                  <div class="col-sm-6">
+                      <mat-form-field appearance="outline" class="mt-field">
+                          <mat-label>Nombre</mat-label>
+                          <input matInput placeholder="Ciudad" formControlName="cityName"
+                              [errorStateMatcher]="matcher">
+                          <mat-error> {{errorMsgFrm}}</mat-error>
+                      </mat-form-field>
+                  </div>
+
+                  <div class="col-sm-6">
+                      <mat-form-field appearance="outline" class="mt-field">
+                          <mat-label>Estado</mat-label>
+                          <mat-select placeholder="Seleccione estado" formControlName="stateId">
+                              <mat-option *ngFor="let item of statesList" [value]="item['stateId']">{{
+                                  item['stateName']
+                                  }}</mat-option>
+                          </mat-select>
+                          <mat-icon matSuffix>apartment</mat-icon>
+                          <mat-error *ngIf="cityForm.hasError('required')"> {{errorMsgFrm}}</mat-error>
+                      </mat-form-field>
+                  </div>
+
+              </div>
+              <div class="row">
+                  <div class="col-sm-12">
+                      <div *ngIf="spinnerOk" id="logSpinner" class="text-center d-flex justify-content-end">
+                          <mat-progress-spinner class="text-right" color="warn" [mode]="mode" [value]="value"
+                              [diameter]="40">
+                          </mat-progress-spinner>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+
+                  <div class="col-sm-6 top">
+                      <button [disabled]="cityForm.invalid" color="primary" mat-flat-button
+                          (click)="registerUpdateObj(cityForm.value)">{{btnTxt}}
+                          <mat-icon>check</mat-icon>
+                        </button>
+                  </div>
+
+                  <div class="col-sm-6 top">
+                    <button mat-flat-button mat-dialog-close color="warn">Cancelar
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>

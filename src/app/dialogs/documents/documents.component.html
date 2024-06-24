@@ -1,0 +1,313 @@
+<div class="container-docs" [@leftToRightAnimation]>
+  <mat-card>
+      <mat-card-header>
+          <mat-card-title class="text-center">Solicitud - {{service.service.serviceRequestId}} Ref.
+            {{service.service.reference}}</mat-card-title>
+          <mat-card-subtitle><b>{{service.service.customerName}}</b></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="table-responsives">
+          <table mat-table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="stop">
+              <th class="mat-cell-adm" mat-header-cell *matHeaderCellDef> Stop </th>
+              <td mat-cell *matCellDef="let element"> {{element.stopNumber}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th class="mat-cell-adm" mat-header-cell *matHeaderCellDef> Estatus </th>
+              <td mat-cell *matCellDef="let element"> {{element.statusDescription}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="invMX">
+              <th class="mat-cell-cte" mat-header-cell *matHeaderCellDef> Fra. MX </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="row">
+                  <div class="col-sm-6"
+                    [matTooltip]="((element.statusId !== 5) && (isCustomer)) ? 'Agregar Fra. MX' : 'Descargar Fra. MX'">
+                    <button
+                      [ngClass]="{'pdf-enabled': element.invoiceMXCompleted === true, 'pdf-disabled': element.invoiceMXCompleted === false}">
+                      <input id="invMx{{element.documentId}}" type="file" class="display-input" accept="application/pdf"
+                        *ngIf="(element.notAcceptedLayoutDC === false) && (isCustomer) && (element.statusId !== 5) && (element.invoiceMXCompleted === false)"
+                        (change)="selectFile($event, element.documentId, {serviceRequestId: element.serviceRequestId, documentId: element.documentId, stopNumber: element.stopNumber})" />
+                      <mat-icon class="notIcon" *ngIf="(element.invoiceMXCompleted) && (!isCustomer)"
+                        (click)="downloadFile({url: element.invoiceMX, fn: element.invMXFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 1 })">download</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-sm-6"
+                    [matTooltip]="((element.invoiceMXCompleted === true) && (isCustomer)) ? 'Opciones' : ''">
+                    <button *ngIf="((element.invoiceMXCompleted) && (isCustomer) && (hasPrivileges))"
+                      [ngClass]="{'more-vert': element.invoiceMXCompleted}"
+                      (click)="openOptions({url: element.invoiceMX, fn: element.invMXFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 1 })">
+                    </button>
+                  </div>
+                </div>
+
+
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="invUS">
+              <th class="mat-cell-cte" mat-header-cell *matHeaderCellDef> Fra. USA </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="row">
+                  <div class="col-sm-6"
+                    [matTooltip]="((element.statusId !== 5) && (isCustomer)) ? 'Agregar Fra. USA' : 'Descargar Fra. USA'">
+                    <button
+                      [ngClass]="{'pdf-enabled': element.invoiceUSACompleted === true, 'pdf-disabled': element.invoiceUSACompleted === false}">
+                      <input id="invUsa{{element.documentId}}" type="file" class="display-input" accept="application/pdf"
+                        *ngIf="(element.notAcceptedLayoutDC === false) && (isCustomer) && (element.statusId !== 5) && (element.invoiceUSACompleted===false)"
+                        (change)="selectFile($event, element.documentId, {serviceRequestId: element.serviceRequestId, documentId: element.documentId, stopNumber: element.stopNumber})" />
+                      <mat-icon class="notIcon" *ngIf="(element.invoiceUSACompleted) && (!isCustomer)"
+                        (click)="downloadFile({url: element.invoiceUSA, fn: element.invUSAFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 2  })">download</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-sm-6" [matTooltip]="((element.invoiceUSACompleted) && (isCustomer)) ? 'Opciones' : ''">
+                    <button *ngIf="((element.invoiceUSACompleted) && (isCustomer) && (hasPrivileges))"
+                      [ngClass]="{'more-vert': element.invoiceUSACompleted}"
+                      (click)="openOptions({url: element.invoiceUSA, fn: element.invUSAFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 2 })">
+                    </button>
+                  </div>
+                </div>
+
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="bol">
+              <th class="mat-cell-cte" mat-header-cell *matHeaderCellDef> BOL </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="row">
+                  <div class="col-sm-6"
+                    [matTooltip]="((element.statusId !== 5) && (isCustomer)) ? 'Agregar BOL' : 'Descargar BOL'">
+                    <button
+                      [ngClass]="{'pdf-enabled': element.bolCompleted === true, 'pdf-disabled': element.bolCompleted === false}">
+                      <input id="bol{{element.documentId}}" type="file" class="display-input" accept="application/pdf"
+                        *ngIf="(element.notAcceptedLayoutDC === false) && (isCustomer) && (element.statusId !== 5) && (element.bolCompleted === false)"
+                        (change)="selectFile($event, element.documentId, {serviceRequestId: element.serviceRequestId, documentId: element.documentId, stopNumber: element.stopNumber})">
+                      <mat-icon class="notIcon" *ngIf="(element.bolCompleted) && (!isCustomer)"
+                        (click)="downloadFile({url: element.bol, fn: element.bolFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 3})">download</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-sm-6" [matTooltip]="((element.bolCompleted) && (isCustomer)) ? 'Opciones' : ''">
+                    <button *ngIf="((element.bolCompleted) && (isCustomer) && (hasPrivileges))"
+                      [ngClass]="{'more-vert': element.bolCompleted}"
+                      (click)="openOptions({url: element.bol, fn: element.bolFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 3})">
+                    </button>
+                  </div>
+                </div>
+
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="inward">
+              <th class="mat-cell-cte" mat-header-cell *matHeaderCellDef> Inward / Manifest </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="row">
+                  <div class="col-sm-6"
+                    [matTooltip]="((element.statusId !== 5) && (isCustomer)) ? 'Agregar Inward/Manifest' : 'Descargar Inward/Manifest'">
+                    <button
+                      [ngClass]="{'pdf-enabled': element.inwardCompleted === true, 'pdf-disabled': element.inwardCompleted === false}">
+                      <input id="inwd{{element.documentId}}" type="file" class="display-input" accept="application/pdf"
+                        *ngIf="(element.notAcceptedLayoutDC === false) && (isCustomer) && (element.statusId !== 5) && (element.inwardCompleted === false)"
+                        (change)="selectFile($event, element.documentId, {serviceRequestId: element.serviceRequestId, documentId: element.documentId, stopNumber: element.stopNumber})" />
+                      <mat-icon class="notIcon" *ngIf="(element.inwardCompleted) && (!isCustomer)"
+                        (click)="downloadFile({url: element.inward, fn: element.inwFN,serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 4})">download</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-sm-6" [matTooltip]="((element.inwardCompleted) && (isCustomer)) ? 'Opciones' : ''">
+                    <button *ngIf="((element.inwardCompleted) && (isCustomer) && (hasPrivileges))"
+                      [ngClass]="{'more-vert': element.inwardCompleted}"
+                      (click)="openOptions({url: element.inward, fn: element.inwFN,serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 4})">
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ace">
+              <th class="mat-cell-ope" mat-header-cell *matHeaderCellDef> ACE </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="row">
+                  <div class="col-sm-6"
+                    [matTooltip]="((element.statusId !== 5) && (isCustomer === false)) ? 'Agregar ACE' : 'Descargar ACE'">
+                    <button
+                      [ngClass]="{'pdf-enabled': element.aceCompleted === true, 'pdf-disabled': element.aceCompleted === false}">
+                      <input id="ace{{element.documentId}}" type="file" class="display-input" accept="application/pdf"
+                        *ngIf="(element.notAcceptedLayoutDC === false) && (!isCustomer) && (element.statusId !== 5) && (element.aceCompleted === false)"
+                        (change)="selectFile($event, element.documentId, {serviceRequestId: element.serviceRequestId, documentId: element.documentId, stopNumber: element.stopNumber})">
+                      <mat-icon class="notIcon" *ngIf="(element.aceCompleted) && (isCustomer) && (hasPrivileges)"
+                        (click)="downloadFile({url: element.ace, fn: element.aceFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 5})">download</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-sm-6" [matTooltip]="((element.aceCompleted) && (!isCustomer)) ? 'Opciones' : ''">
+                    <button *ngIf="((element.aceCompleted) && (!isCustomer))"
+                      [ngClass]="{'more-vert': element.aceCompleted}"
+                      (click)="openOptions({url: element.ace, fn: element.aceFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 5})">
+                    </button>
+                  </div>
+                </div>
+
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="layout">
+              <th class="mat-cell-cte" mat-header-cell *matHeaderCellDef> Layout </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="row">
+                  <div class="col-sm-6"
+                    [matTooltip]="((element.statusId !== 5) && (isCustomer)) ? 'Agregar layout' : 'Descargar Layout'">
+                    <button
+                      [ngClass]="{'xls-enabled': element.layoutCompleted === true, 'xls-disabled': element.layoutCompleted === false}">
+                      <input id="layout{{element.documentId}}" type="file" class="display-input"
+                        *ngIf="(element.notAcceptedLayoutDC === false) && (isCustomer) && (element.statusId !== 5)"
+                        (change)="selectFile($event, element.documentId, {serviceRequestId: element.serviceRequestId, documentId: element.documentId, stopNumber: element.stopNumber})"
+                        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                      <mat-icon class="notIcon" *ngIf="(element.layoutCompleted) && (!isCustomer)"
+                        (click)="downloadFile({url: element.layout, fn: element.layoutFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 6})">download</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-sm-6" [matTooltip]="((element.layoutCompleted) && (isCustomer)) ? 'Opciones' : ''">
+                    <button *ngIf="((element.layoutCompleted) && (isCustomer) && (hasPrivileges))"
+                      [ngClass]="{'more-vert': element.layoutCompleted}"
+                      (click)="openOptions({url: element.layout, fn: element.layoutFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 6})">
+                    </button>
+                  </div>
+                </div>
+
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="layoutAcep">
+              <th class="mat-cell-adm" mat-header-cell *matHeaderCellDef> Layout Aceptado </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="container-docs cont-style">
+                  <div
+                    *ngIf="(!isCustomer) && (element.acceptedLayoutDC === false && element.notAcceptedLayoutDC === false) && (element.layoutCompleted)"
+                    class="row">
+                    <div class="col-sm-6">
+                      <button class="text-center" mat-icon-button matTooltip="Aceptar layout"
+                        (click)="updateLayoutStatus({serviceRequestId: element.serviceRequestId, documentId: element.documentId,acceptLayout: true, notAcceptLayout: false, message: 'aceptar'})">
+                        <mat-icon color="primary">check_circle</mat-icon>
+                      </button>
+                    </div>
+                    <div class="col-sm-6">
+                      <button mat-icon-button matTooltip="Rechazar layout"
+                        (click)="updateLayoutStatus({serviceRequestId: element.serviceRequestId, documentId: element.documentId, notAcceptLayout: true, acceptLayout: false, message: 'rechazar'})">
+                        <mat-icon class="inactivo">cancel</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12 text-center">
+                      <mat-icon *ngIf="element.acceptedLayoutDC">check_circle</mat-icon>
+                      <mat-icon *ngIf="element.notAcceptedLayoutDC">cancel</mat-icon>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="consigmentNote">
+              <th class="mat-cell-adm" mat-header-cell *matHeaderCellDef> Núm. Carta Porte </th>
+              <td mat-cell *matCellDef="let element"
+                [matTooltip]="((element.statusId !== 5) && (isCustomer === false)) ? 'Agregar núm. de carta porte' : ''"
+                [ngClass]="((element.statusId === 4) && (!isCustomer)) ? 'pointer' : ''"
+                (click)="setConsignmentNote({documentId: element.documentId, consignmentNote: element.consignmentNote, status: element.statusId })">
+                {{element.consignmentNote}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="xml">
+              <th class="mat-cell-adm" mat-header-cell *matHeaderCellDef> XML </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="row">
+                  <div class="col-sm-6"
+                    [matTooltip]="((element.statusId !== 5) && (isCustomer === false)) ? 'Agregar XML' : 'Descargar XML'">
+                    <button
+                      [ngClass]="{'xml-enabled': element.xmlCompleted === true, 'xml-disabled': element.xmlCompleted === false}">
+                      <input id="xml{{element.documentId}}" type="file" class="display-input"
+                        *ngIf="(element.notAcceptedLayoutDC === false) && (isCustomer === false) && (element.statusId <= 4) && (element.xmlCompleted === false) && (element.layoutCompleted)"
+                        (change)="selectFile($event, element.documentId, {serviceRequestId: element.serviceRequestId, documentId: element.documentId, stopNumber: element.stopNumber})"
+                        accept="text/xml">
+                      <mat-icon class="notIcon" *ngIf="(element.xmlCompleted) && (isCustomer)"
+                        (click)="downloadFile({url: element.xml, fn: element.xmlFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 7})">download</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-sm-6" [matTooltip]="((element.xmlCompleted) && (!isCustomer)) ? 'Opciones' : ''">
+                    <button *ngIf="((element.xmlCompleted) && (!isCustomer))"
+                      [ngClass]="{'more-vert': element.xmlCompleted}"
+                      (click)="openOptions({url: element.xml, fn: element.xmlFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 7})">
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="originalPdf">
+              <th class="mat-cell-adm" mat-header-cell *matHeaderCellDef> PDF Original </th>
+              <td mat-cell *matCellDef="let element"
+                [matTooltip]="((element.statusId !== 5)&& (isCustomer === false)) ? 'Agregar PDF Original' : 'Descargar PDF Original'">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <button
+                      [ngClass]="{'pdf-enabled': element.originalPDFCompleted === true, 'pdf-disabled': element.originalPDFCompleted === false}">
+                      <input id="origPdf{{element.documentId}}" type="file" class="display-input" accept="application/pdf"
+                        *ngIf="(element.notAcceptedLayoutDC === false) && (isCustomer === false) && (element.statusId <= 4) && (element.originalPDFCompleted === false) && (element.layoutCompleted)"
+                        (change)="selectFile($event, element.documentId, {serviceRequestId: element.serviceRequestId, documentId: element.documentId, stopNumber: element.stopNumber})" />
+                      <mat-icon class="notIcon" *ngIf="(element.originalPDFCompleted) && (isCustomer)"
+                        (click)="downloadFile({url: element.originalPDF, fn: element.oPdfFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 8})">download</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-sm-6" [matTooltip]="((element.originalPDFCompleted) && (!isCustomer)) ? 'Opciones' : ''">
+                    <button *ngIf="((element.originalPDFCompleted) && (!isCustomer))"
+                      [ngClass]="{'more-vert': element.originalPDFCompleted}"
+                      (click)="openOptions({url: element.originalPDF, fn: element.oPdfFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 8})">
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="operationsPdf">
+              <th class="mat-cell-adm" mat-header-cell *matHeaderCellDef> PDF Operacional </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="row">
+                  <div class="col-sm-6"
+                    [matTooltip]="((element.statusId !== 5)&& (isCustomer === false)) ? 'Agregar PDF Operacional' : 'Descargar PDF Operacional'">
+                    <button
+                      [ngClass]="{'pdf-enabled': element.operationsPDFCompleted === true, 'pdf-disabled': element.operationsPDFCompleted === false}">
+                      <input id="optPdf{{element.documentId}}" type="file" class="display-input" accept="application/pdf"
+                        *ngIf="(element.notAcceptedLayoutDC === false) && (isCustomer === false) && (element.statusId <= 4) && (element.operationsPDFCompleted === false) && (element.layoutCompleted)"
+                        (change)="selectFile($event, element.documentId, {serviceRequestId: element.serviceRequestId, documentId: element.documentId, stopNumber: element.stopNumber})" />
+                      <mat-icon class="notIcon" *ngIf="(element.operationsPDFCompleted) && (isCustomer) && (hasPrivileges)"
+                        (click)="downloadFile({url: element.operationsPDF, fn: element.opPdfFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 9})">download</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-sm-6"
+                    [matTooltip]="((element.operationsPDFCompleted) && (!isCustomer)) ? 'Opciones' : ''">
+                    <button *ngIf="((element.operationsPDFCompleted) && (!isCustomer))"
+                      [ngClass]="{'more-vert': element.operationsPDFCompleted}"
+                      (click)="openOptions({url: element.operationsPDF, fn: element.opPdfFN, serviceRequestId: element.serviceRequestId, documentId: element.documentId, statusId: element.statusId, documentType: 9})">
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="comments">
+              <th class="mat-cell-adm" mat-header-cell *matHeaderCellDef> Comentarios </th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button matTooltip="Ver comentarios" color="primary"
+                  (click)="openComments({serviceRequestId: element.serviceRequestId, documentId: element.documentId})">
+                  <mat-icon class="icon">chat</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[6]" [pageSize]="6"></mat-paginator>
+        </div>
+      </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,4 @@
+[
+  { "redirect": "/nav-adm/requests-ccp",  "type": "link","name": "Solicitudes CCP", "icon": "local_shipping" },
+  { "redirect": "/nav-adm/reports",  "type": "link","name": "Reportes", "icon": "summarize" }
+]

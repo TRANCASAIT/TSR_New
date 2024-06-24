@@ -1,0 +1,136 @@
+.fz {
+  font-size: medium !important;
+  // background-color: #ec2224;
+  color: #000;
+}
+
+.mdc-card{
+  display: contents !important;
+}
+
+.card-start{
+  display: contents;
+}
+
+.mat-cell-ope {
+  background-color: #ff0000 !important;
+  color: white !important;
+  text-align: center !important;
+  // border-right: .1rem solid #000000;
+}
+
+.mat-cell-adm {
+  background-color: #ff6060 !important;
+  color: white !important;
+  text-align: center !important;
+  // border-right: .1rem solid #000000;
+}
+
+.mat-cell-cte {
+  background-color: #aa0000 !important;
+  color: white !important;
+  text-align: center !important;
+  // border-right: .1rem solid #000000;
+}
+
+.pdf-enabled {
+  background: url('./../../../assets/svg/pdf-enabled.png');
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 25px;
+  background-size: 25px 25px;
+  border: none;
+}
+
+.pdf-disabled {
+  background: url('./../../../assets/svg/pdf-disabled.png');
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 25px;
+  background-size: 25px 25px;
+  border: none;
+}
+
+.xls-enabled {
+  background: url('./../../../assets/svg/xls-enabled.png');
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 25px;
+  border: none;
+  background-size: 25px 25px;
+}
+
+.xls-disabled {
+  background: url('./../../../assets/svg/xls-disabled.png');
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 25px;
+  border: none;
+  background-size: 25px 25px;
+}
+
+.xml-enabled {
+  background: url('./../../../assets/svg/xml-enabled.png');
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 25px;
+  border: none;
+  background-size: 25px 25px;
+}
+
+.xml-disabled {
+  background: url('./../../../assets/svg/xml-disabled.png');
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 25px;
+  border: none;
+  background-size: 25px 25px;
+}
+
+.more-vert {
+  background: url('./../../../assets/svg/more-vert.png');
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 25px;
+  border: none;
+  background-size: 25px 25px;
+}
+
+.container-docs {
+  max-width: 100%;
+}
+
+.cont-style{
+  padding: 0 0 0 0;
+}
+
+
+.pointer{
+  cursor: pointer;
+}
+
+.display-input{
+  text-indent: -999em;
+  outline: none;
+  width: 35px;
+  height: 30px;
+  position: initial;
+  cursor: pointer;
+}
+
+.notIcon{
+  color: transparent;
+}
+
+//!All styles under the following tag must be applied when the max-width is reached
+@media (max-width: 575px){
+  .more-vert {
+      background: url('./../../../assets/svg/more-horizontal.png');
+      background-repeat: no-repeat;
+      width: 30px;
+      height: 25px;
+      border: none;
+      background-size: 25px 25px;
+  }
+
+}

@@ -1,0 +1,88 @@
+.example-list-wrapping {
+  max-width: 800px; /* Increased max-width for larger cards */
+  margin: 0 auto; /* Center the card */
+}
+
+.container-secondary {
+  max-height: 300px !important; /* Increase max-height to allow more content */
+  padding: 10px; /* Optional: add padding for better appearance */
+}
+
+
+.mat-mdc-card {
+  display: contents !important;
+}
+
+li {
+  list-style: none;
+}
+
+.mt-field {
+  width: 100%;
+  margin-left: 4px;
+}
+
+.top {
+  margin-top: .5em;
+}
+
+h2, h4 {
+  padding: 0 0 0 0;
+  font-size: medium;
+}
+
+.custom-dialog-content{
+  padding: 0 !important;
+}
+
+/* Custom styling for chat messages */
+.custom-dialog-content .list-group {
+  max-height: 300px; /* Adjust height as needed */
+
+}
+.list-group {
+  overflow-y: auto;
+  margin-bottom: 5px;
+}
+
+
+.custom-dialog-content .list-group .sent {
+  text-align: right;
+  margin-left: auto;
+  background-color: #dcf8c6;
+}
+
+.custom-dialog-content .list-group .received {
+  text-align: left;
+  margin-right: auto;
+  background-color: #fdd5d5;
+}
+
+.custom-dialog-content .list-group .sent,
+.custom-dialog-content .list-group .received {
+  margin-bottom: 10px; /* Adjust as needed */
+}
+
+/* Ensuring the form and submit button stay fixed below the list */
+.custom-dialog-content .container-secondary {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-dialog-content .container-secondary .row.text-center {
+  flex-shrink: 0;
+}
+
+/* Additional styling can be added as needed */
+
+.custom-dialog-content mat-card {
+  width: 100%;
+}
+mat-card{
+  padding: 0!important;
+}
+
+.content {
+  padding-bottom: 0!important;
+  padding-top: 0!important;
+}

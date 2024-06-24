@@ -1,0 +1,4 @@
+[
+  { "redirect": "/nav-custom/requests",  "type": "link","name": "Solicitudes", "icon": "local_shipping" },
+  { "redirect": "/nav-custom/services-reports",  "type": "link","name": "Reporte", "icon": "summarize" }
+]

@@ -1,0 +1,136 @@
+<div class="custom-dialog-content" [@topToBottomAnimation]>
+  <h1 mat-dialog-title class="text-center">Compañía</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="customerForm">
+      <div class="text-center">
+        <input matInput formControlName="customerId" [errorStateMatcher]="matcher" hidden>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="Cliente" formControlName="name" [errorStateMatcher]="matcher">
+              <mat-error> {{errorMsgFrm}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>Calle</mat-label>
+              <input matInput placeholder="Calle" formControlName="street" [errorStateMatcher]="matcher">
+              <mat-error>{{ errorMsgFrm }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>N. ext.</mat-label>
+              <input matInput placeholder="Exterior" formControlName="extNumber" [errorStateMatcher]="matcher">
+              <mat-error>{{ errorMsgFrm }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>N. int.</mat-label>
+              <input matInput placeholder="Interior" formControlName="intNumber" [errorStateMatcher]="matcher">
+              <mat-error>{{ errorMsgFrm }}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>Colonia</mat-label>
+              <input matInput placeholder="Colonia" formControlName="suburb" [errorStateMatcher]="matcher">
+              <mat-error> {{errorMsgFrm}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>C.P.</mat-label>
+              <input matInput placeholder="C.P." formControlName="zipCode" [errorStateMatcher]="matcher">
+              <mat-error> {{errorMsgFrm}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>RFC</mat-label>
+              <input matInput placeholder="RFC" formControlName="rfc" [errorStateMatcher]="matcher">
+              <mat-error> {{errorMsgFrm}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>Estado</mat-label>
+              <mat-select placeholder="Estado" formControlName="stateId" (selectionChange)="onStateChanged()">
+                <mat-option *ngFor="let item of statesList" [value]="item['stateId']">{{
+                  item['stateName']
+                  }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="customerForm.hasError('required')"> {{errorMsgFrm}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>Ciudad</mat-label>
+              <mat-select placeholder="Ciudad" formControlName="cityId">
+                <mat-option *ngFor="let item of citiesList" [value]="item['cityId']">{{
+                  item['cityName']
+                  }}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="customerForm.hasError('required')"> {{errorMsgFrm}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>Teléfono</mat-label>
+              <input matInput placeholder="Teléfono" formControlName="phone" [errorStateMatcher]="matcher">
+              <mat-error> {{errorMsgFrm}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+              <mat-error> {{errorMsgFrm}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div *ngIf="spinnerOk" id="logSpinner" class="text-center d-flex justify-content-end">
+              <mat-progress-spinner class="text-right" color="warn" [mode]="mode" [value]="value" [diameter]="40">
+              </mat-progress-spinner>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div mat-dialog-actions align="center">
+    <div class="row">
+
+      <div *ngIf="sent===false" class="col-sm-6 top">
+        <button [disabled]="customerForm.invalid" color="primary" mat-flat-button
+          (click)="registerUpdateObj(customerForm.value)">{{btnTxt}}
+          <mat-icon>check</mat-icon>
+        </button>
+      </div>
+      <div class="col-sm-6 top">
+        <button mat-flat-button mat-dialog-close color="warn">Cancelar
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

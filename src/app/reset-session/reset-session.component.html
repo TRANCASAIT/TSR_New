@@ -1,0 +1,72 @@
+<div class="login-register">
+  <div class="login-register-box">
+    <mat-card class="mat-mdc-card mdc-card">
+      <div class="flex-container">
+        <div class="logo-container">
+          <img src="assets/logo.png" alt="Trancasa">
+        </div>
+        <div class="stepper-container">
+          <mat-card-title class="text-center">Restablecer Sesión</mat-card-title>
+          <mat-card-content>
+            <form id="logIn">
+              <mat-stepper orientation="vertical" linear #stepper>
+                <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+                  <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>
+                      <label class="stepper-label">Username</label>
+                    </ng-template>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Nombre de usuario</mat-label>
+                      <input matInput type="email" formControlName="firstCtrl" placeholder="username" required>
+
+                    </mat-form-field>
+                    <div class="button-container">
+
+                      <button mat-flat-button class="btn btn-right" (click)="validateEmail(stepper)" color="primary">Validar
+                        <mat-icon>check</mat-icon>
+                      </button>
+                    </div>
+                  </form>
+                </mat-step>
+                <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+                  <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>
+                      <label class="stepper-label">Código</label>
+                    </ng-template>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Verificación de código</mat-label>
+                      <input matInput formControlName="secondCtrl" placeholder="Ingrese el código recibido" required>
+                    </mat-form-field>
+                    <div class="button-container">
+                      <button mat-flat-button class="btn btn-right" (click)="validateCode(stepper)" color="primary">Validar
+                        <mat-icon>check</mat-icon>
+                      </button>
+                    </div>
+                  </form>
+                </mat-step>
+
+                <mat-step>
+                  <ng-template matStepLabel>
+                    <label class="stepper-label">Finalizado</label>
+                  </ng-template>
+                  <p>
+                    <mat-icon aria-hidden="false" class="check-color" aria-label="Example home icon"
+                      fontIcon="check"></mat-icon>
+                    Será redirigido automaticamente, en caso contrario, de clic en el siguiente botón
+                  </p>
+                  <div>
+                    <button mat-flat-button class="button-stepper" routerLink="/login">Ir al inicio de sesión</button>
+                  </div>
+                </mat-step>
+              </mat-stepper>
+              <div class="text-center">
+                <button type="button" mat-flat-button class="ancho" color="warn" routerLink="/login">Cancelar
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

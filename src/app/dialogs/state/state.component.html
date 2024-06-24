@@ -1,0 +1,40 @@
+<div class="custom-dialog-content">
+  <h1 mat-dialog-title class="text-center">Estado</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="stateForm">
+      <div class="text-center">
+        <input matInput formControlName="stateId" [errorStateMatcher]="matcher" hidden>
+        <div class="row">
+          <div class="col-sm-12">
+            <mat-form-field appearance="outline" class="mt-field">
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="Estado" formControlName="stateName" [errorStateMatcher]="matcher">
+              <mat-error> {{errorMsgFrm}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div *ngIf="spinner" id="logSpinner" class="text-center d-flex justify-content-end">
+              <mat-progress-spinner class="text-right" color="warn" [mode]="mode" [value]="value" [diameter]="40">
+              </mat-progress-spinner>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 top">
+            <button [disabled]="stateForm.invalid" color="primary" mat-flat-button
+              (click)="registerUpdateObj(stateForm.value)">{{btnTxt}}
+            <mat-icon>check</mat-icon></button>
+          </div>
+          <div class="col-sm-6 top">
+            <button mat-flat-button mat-dialog-close color="warn">Cancelar
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

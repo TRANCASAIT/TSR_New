@@ -1,0 +1,100 @@
+.mt-field {
+  margin-top: .5em;
+  width: 100%;
+}
+
+.mdc-notched-outline {
+  height: 90px !important;
+}
+
+.top {
+  margin-top: .6em;
+}
+
+
+
+.completed {
+  background-color: #c6e0b1 !important;
+}
+
+.refused {
+  background-color: #ffc0c0 !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
+mat-form-field {
+  height: 50px;
+
+  input {
+    height: 20px;
+    font-size: 15px;
+  }
+
+  mat-select {
+    height: 5px;
+  }
+}
+
+.button-container {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+
+  .button {
+    // flex: 1; // Allow buttons to grow and fill the space evenly
+    margin: 0 5px;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 255, 0.793);
+    color: #ffff;
+  }
+
+  .btn-right {
+    margin-left: 10px;
+    background-color: #B20B0B;
+    color: #ffff;
+  }
+
+  .xlsBtn {
+    background-color: green !important;
+    color: white !important;
+    margin-left: 10px;
+  }
+}
+
+.card {
+  display: inline;
+}
+
+
+@media (max-width: 1366px) {
+  .container {
+    max-width: 100% !important;
+  }
+
+  .mt-field {
+    margin-top: .5em;
+    width: 100%;
+  }
+
+
+  td {
+    font-size: 11px !important;
+  }
+}
+
+@media(max-width: 500px) {
+ .form-options{
+  color: #B20B0B;
+
+  // .mt-field{
+  //   width: 50% !important;
+  //  }
+
+ }
+
+
+}

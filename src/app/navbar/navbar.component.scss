@@ -1,0 +1,206 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+mat-sidenav {
+  width: fit-content;
+}
+
+.session-out:hover{
+  color: #851111;
+
+  mat-icon {
+    color: #851111;
+  }
+}
+
+.settings-btn{
+  transition: background-color 2s ease-out 100ms;
+
+}
+
+.settings-btn:hover {
+  background-color: #f5dff74f;
+}
+
+
+
+.example-footer {
+  padding: 1em;
+  text-align: center;
+  font-size: small;
+  display: block;
+  color: #f7dfdf;
+  background: linear-gradient(to bottom right, #bc0b0b, #ff0000);
+  height: 40px;
+}
+
+.example-footer .social-media-links {
+  margin-top: 1em;
+}
+
+.example-footer .social-media-links a {
+  margin: 0 0.5em;
+  color: #555; /* Change color as needed */
+  text-decoration: none;
+}
+
+.example-footer .social-media-links a mat-icon {
+  font-size: 24px; /* Adjust icon size as needed */
+}
+
+.example-sidenav-container,
+.example-container {
+  height: 100%;
+  flex: 1;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.example-toolbar {
+  color: #f7dfdf;
+  height: 42px;
+  background: linear-gradient(to bottom right, #bc0b0b, #ff0000); /* Example gradient colors */
+
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+  animation-name: example;
+  animation-duration: 4s;
+}
+
+@keyframes example {
+  from {background: linear-gradient(to bottom left, #851111, #ff0000);}
+  to {background:
+    linear-gradient(to bottom right, #bc0b0b, #ff0000);}
+}
+
+.matList:hover {
+  color: white;
+  background-color: #ec2224;
+}
+
+.example-spacer-long {
+  flex: 1 1 auto;
+}
+
+.example-spacer-short {
+  flex-basis: 25px;
+}
+
+.is-active {
+  background-color: #ec2224 !important;
+  color: rgb(255, 255, 255);
+}
+
+h2 {
+  font-size: initial;
+}
+
+.mat-flat-button.mat-accent,
+.mat-raised-button.mat-accent,
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent {
+  background-color: black;
+}
+
+.mat-flat-button.mat-accent,
+.mat-raised-button.mat-accent,
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent:hover {
+  box-shadow: 0 0 40px 40px #221f1f inset;
+}
+
+.mat-mdc-menu-panel {
+  position: absolute !important;
+}
+
+.logOutStyle {
+  font-size: unset;
+  padding: inherit;
+}
+
+.example-app-name {
+  margin: 0 0 0;
+}
+
+a {
+  color: rgb(255, 255, 255);
+}
+
+.mdc-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 64px;
+  border: none;
+  outline: none;
+  line-height: inherit;
+  user-select: none;
+  -webkit-appearance: none;
+  appearance: none;
+  overflow: visible;
+  vertical-align: middle;
+  background: rgba(0, 0, 0, 0);
+  float: left;
+  margin: 0 0 0;
+
+}
+
+.fz {
+  font-size: smaller;
+}
+
+.menuSet {
+  width: fit-content;
+}
+
+
+.mdc-button {
+  background: f44336;
+}
+
+.bottom-item {
+  position: relative;
+}
+
+.mat-list-base .mat-list-item {
+  height: auto !important;
+}
+
+.mat-icon{
+  display: contents !important;
+}
+
+.example-toolbar img {
+  width: 35px; /* Adjust the width and height as needed */
+  height: 35px;
+  border-radius: 50%; /* Makes the photo circular */
+}
+
+/* Adjust size for smaller screens */
+@media (max-width: 600px) {
+  .example-toolbar img {
+    width: 32px; /* Decrease width for smaller screens */
+  }
+}

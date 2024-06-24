@@ -1,0 +1,45 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="warn" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()" name="show-menu" aria-label="show-menu"><mat-icon>menu</mat-icon></button>
+    <span class="fz">TSR</span>
+    <span class="example-spacer-long"></span>
+    <span class="fz">{{user}}</span>
+    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" class="settings-btn"
+      [matMenuTriggerFor]="menuUser" name="user-settings">
+      <mat-icon>settings</mat-icon>
+    </button>
+
+    <mat-menu #menuUser="matMenu">
+      <button class="session-out" mat-menu-item (click)="logOut()" name="sign-out">
+        <mat-icon>logout</mat-icon>
+        Cerrar Sesión
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+    <mat-sidenav #snav id="snav" class="snav-menu" mode="side" [mode]="mobileQuery.matches ? 'side' : 'over'"
+      fixedTopGap="0" [disableClose]="mobileQuery.matches">
+      <mat-nav-list appAccordion>
+        <a mat-list-item [routerLink]="item.redirect" [routerLinkActive]="['is-active']" (click)="snav.toggle()"
+          *ngFor="let item of menu" (click)="cerrarNav()" class="mat-list">
+          <mat-icon inline="true">{{item.icon}}</mat-icon>
+          <span>{{item.name}}</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div>
+        <router-outlet></router-outlet>
+
+      </div>
+
+    </mat-sidenav-content>
+
+
+  </mat-sidenav-container>
+  <!-- <footer class="example-footer">
+    <p><b>&copy; 2024 TCA Logistics. All rights reserved.</b></p>
+  </footer> -->
+</div>

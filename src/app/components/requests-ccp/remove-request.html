@@ -1,0 +1,11 @@
+<div class="custom-content-dialog">
+  <div mat-dialog-content>
+    <p style="color: black;">¿Esta seguro de eliminar el folio: <b>{{folio}} - {{customer}}</b>?</p>
+  </div>
+  <div mat-dialog-actions align="center">
+
+    <button mat-flat-button (click)="onYesClick()" cdkFocusInitial class="actionBtn" color="primary">SI</button>
+    <button mat-flat-button  mat-dialog-close (click)="closeModal()"  color="warn">NO</button>
+
+  </div>
+</div>

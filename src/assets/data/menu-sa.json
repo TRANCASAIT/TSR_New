@@ -1,0 +1,11 @@
+[
+  { "redirect": "/nav-sa/requests-ccp",  "type": "link","name": "Solicitudes CCP", "icon": "local_shipping" },
+  { "redirect": "/nav-sa/requests-reports",  "type": "link","name": "Reporte", "icon": "summarize" },
+  { "redirect": "/nav-sa/cities",  "type": "link","name": "Ciudades", "icon": "location_city" },
+  { "redirect": "/nav-sa/states",  "type": "link","name": "Estados", "icon": "apartment" },
+  { "redirect": "/nav-sa/customers",  "type": "link","name": "Compañías", "icon": "store" },
+    { "redirect": "/nav-sa/customer-users",  "type": "link","name": "Clientes", "icon": "group" },
+    { "redirect": "/nav-sa/users",  "type": "link","name": "Administrativos", "icon": "person" },
+    { "redirect": "/nav-sa/operation-types",  "type": "link","name": "Operaciones", "icon": "list" },
+    { "redirect": "/nav-sa/status",  "type": "link","name": "Estatus", "icon": "rule" }
+]

@@ -1,0 +1,13 @@
+<div class="custom-dialog-content">
+  <div mat-dialog-content>
+      <p style="color: black;">Esta seguro de {{layoutLbl}} el layout?</p>
+  </div>
+  <div mat-dialog-actions align="center">
+      <button mat-flat-button color="primary" (click)="onYesClick()" cdkFocusInitial class="actionBtn">Sí
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-flat-button color="warn" class="closeBtn" (click)="onNoClick()">No
+        <mat-icon>cancel</mat-icon>
+      </button>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="custom-dialog-content">
+  <h1 mat-dialog-title class="text-center">Solicitud de servicio</h1>
+  <div mat-dialog-content>
+      <form [formGroup]="requestForm">
+          <div class="text-center">
+              <input matInput formControlName="serviceRequestId" [errorStateMatcher]="matcher" hidden>
+              <div class="row">
+                  <div class="col-sm-6">
+                      <mat-form-field appearance="outline" class="mt-field">
+                          <mat-label>Numero de caja</mat-label>
+                          <input matInput placeholder="Caja" formControlName="boxNumber"
+                              [errorStateMatcher]="matcher">
+                          <mat-error> {{errorMsgFrm}}</mat-error>
+                      </mat-form-field>
+                  </div>
+                  <div class="col-sm-6">
+                      <mat-form-field appearance="outline" class="mt-field">
+                          <mat-label>Referencia</mat-label>
+                          <input matInput placeholder="Referencia" formControlName="reference"
+                          [errorStateMatcher]="matcher">
+                          <mat-error> {{errorMsgFrm}}</mat-error>
+                      </mat-form-field>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-6">
+                      <mat-form-field appearance="outline" class="mt-field">
+                          <mat-label>Numero de stops</mat-label>
+                          <mat-select placeholder="Stops" formControlName="stopId">
+                              <mat-option *ngFor="let item of stopsList" [value]="item['stopId']">{{
+                                  item['stopNumber']
+                                  }}</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                  </div>
+                  <div class="col-sm-6">
+                      <mat-form-field appearance="outline" class="mt-field">
+                          <mat-label>Operación</mat-label>
+                          <mat-select placeholder="Operación" formControlName="operationTypeId">
+                              <mat-option *ngFor="let item of operationsList" [value]="item['operationTypeId']">{{
+                                  item['operationTypeName']
+                                  }}</mat-option>
+                          </mat-select>
+                          <mat-icon matSuffix>local_shipping</mat-icon>
+                      </mat-form-field>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-12">
+                      <div *ngIf="spinnerOk" id="logSpinner" class="text-center d-flex justify-content-end">
+                          <mat-progress-spinner class="text-right" color="warn" [mode]="mode" [value]="value"
+                              [diameter]="40">
+                          </mat-progress-spinner>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+
+                  <div class="col-sm-6">
+                      <button [disabled]="requestForm.invalid" color="primary" mat-flat-button
+                          (click)="registerRequest(requestForm.value)">{{btnTxt}}
+                        <mat-icon>check</mat-icon></button>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <button mat-flat-button mat-dialog-close color="warn">Cancelar</button>
+                </div>
+
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
